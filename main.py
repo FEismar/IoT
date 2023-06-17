@@ -1,4 +1,3 @@
-import machine
 import network
 import utime
 from umqtt_simple import MQTTClient
