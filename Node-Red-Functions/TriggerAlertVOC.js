@@ -6,7 +6,7 @@ if (msg.payload - voc >= 10) {
     payload: {
       chatId: 271097462,
       type: "message",
-      content: "VOC zu hoch! (<1300)",
+      content: "VOC zu hoch! (>1300)",
     },
   };
 }
