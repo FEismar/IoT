@@ -6,7 +6,7 @@ if (msg.payload - co2 >= 100) {
     payload: {
       chatId: 271097462,
       type: "message",
-      content: "CO2 zu hoch! (<1200)",
+      content: "CO2 zu hoch! (>1200)",
     },
   };
 }
