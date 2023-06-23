@@ -5,12 +5,12 @@ import CCS811
 from machine import Pin, ADC, I2C
 import onewire, ds18x20, utime
 
-wlanSSID = 'iPhone (107)'
-wlanPW = 'admin12345'
+wlanSSID = '********'
+wlanPW = '********'
 network.country('DE')
 
 mqttBroker = 'mqtt.eclipseprojects.io' 
-mqttClient = 'pico_office_1'
+mqttClient = ''
 mqttUser = 'mqtt-user'
 mqttPW = '***********'
 
@@ -28,7 +28,7 @@ def wlanConnect():
     if not wlan.isconnected():
         #print('WLAN-Verbindung herstellen:', wlanSSID)
         wlan.active(True)
-        wlan.config(pm = 0xa11140) # Disable powersave mode
+        wlan.config(pm = 0xa11140) #Disable powersave mode
         wlan.connect(wlanSSID, wlanPW)
         for i in range(10):
             if wlan.status() < 0 or wlan.status() >= 3:
@@ -54,7 +54,7 @@ client = mqttConnect()
 
 def mqttPublish(topic, data):
     client.publish(topic, data)
-    print(topic, data)
+    #print(topic, data)
     return client
  
 while True:
@@ -71,14 +71,14 @@ while True:
                 
                 #Daten lesen
                 t = ds_sensor.read_temp(rom)
-                c02 = sensor_co2.eCO2
+                co2 = sensor_co2.eCO2
                 voc = sensor_co2.tVOC
                 sensor_co2.put_envdata(humidity = 50, temp=t)
-                print (c02, voc, t)
+                print (co2, voc, t)
                 
-                #daten veröffentlichen
+                #Daten veröffentlichen
                 try:
-                    mqttPublish('ef/office/eCO2', str(c02))
+                    mqttPublish('ef/office/eCO2', str(co2))
                 except OSError:
                     print('Fehler: Keine MQTT-Verbindung CO2')
                 utime.sleep(1)
