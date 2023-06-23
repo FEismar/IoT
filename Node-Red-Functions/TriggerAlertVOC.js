@@ -1,5 +1,5 @@
 let voc = global.get("voc") || 0;
-if (msg.payload - voc >= 10) {
+if (msg.payload - voc >= 100) {
   global.set("voc", msg.payload);
   global.set("lueften_voc", true);
   return {
