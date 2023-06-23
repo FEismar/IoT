@@ -46,7 +46,6 @@ def mqttConnect():
     client = MQTTClient(mqttClient, mqttBroker, port=1883,keepalive=60)
     client.set_last_will('ef/office/pico', str(-1))
     client.connect()
-    
     return client
 
 wlan = wlanConnect()
