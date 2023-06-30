@@ -1,0 +1,7 @@
+return {
+    payload: {
+        chatId: **********,
+        type: 'message',
+        content: 'Temp: ' + msg.payload[0].value
+    }
+}
