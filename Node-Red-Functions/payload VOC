@@ -1,0 +1,7 @@
+return {
+    payload: {
+        chatId: 271097462,
+        type: 'message',
+        content: 'tVOC: ' + msg.payload[0].value
+    }
+}
