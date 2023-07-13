@@ -1,0 +1,9 @@
+    if (msg.payload < 0) {
+    return {
+        payload: {
+            chatId: 271097462,
+            type: 'message',
+            content: 'Alarm! Alarm! Pico Verbindung länger als 60 sec getrennt.'
+        }
+    }
+}
