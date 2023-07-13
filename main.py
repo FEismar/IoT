@@ -14,12 +14,15 @@ mqttClient = ''
 mqttUser = 'mqtt-user'
 mqttPW = '***********'
 
+#Initialisierung Onboard LED
 led_onboard = Pin('LED', Pin.OUT)
 sensor_temp = ADC(4)
 
+#Initialisierung Temp. Sensor
 ds_pin = machine.Pin(16)
 ds_sensor = ds18x20.DS18X20(onewire.OneWire(ds_pin))
 
+#Scannen auf Geräte im OneWire-Bus
 roms = ds_sensor.scan()
 #print('Found DS devices: ', roms)
 
@@ -55,7 +58,8 @@ def mqttPublish(topic, data):
     client.publish(topic, data)
     #print(topic, data)
     return client
- 
+
+#main Methode
 while True:
     if wlan.isconnected():
         i2c = I2C(0, scl=Pin(5), sda=Pin(4))
